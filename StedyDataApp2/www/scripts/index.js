@@ -2,6 +2,27 @@
 // http://go.microsoft.com/fwlink/?LinkID=397704
 // To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
+
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtnOpen");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function () {
+    modal.style.display = "block";
+    btn.style.display = "none";
+   
+}
+span.onclick = function () {
+    modal.style.display = "none";
+    btn.style.display = "block";
+    console.log("it passed");
+}
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        console.log("it works");
+    }
+}
+
 (function () {
     "use strict";
 
@@ -13,11 +34,7 @@
         document.addEventListener( 'resume', onResume.bind( this ), false );
         
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
-        var parentElement = document.getElementById('deviceready');
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        
     };
 
     function onPause() {
@@ -27,4 +44,4 @@
     function onResume() {
         // TODO: This application has been reactivated. Restore application state here.
     };
-} )();
+    });
