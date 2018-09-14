@@ -11,7 +11,7 @@ function createDB() {
 function createTable() {
     db.transaction(function (transaction) {
         console.log("create table");
-        var executeQuery = "CREATE TABLE locations (loc, lat, lon)";
+        var executeQuery = "CREATE TABLE IF NOT EXISTS locations (loc, lat, lon)";
         transaction.executeSql(executeQuery, [],
             function (tx, result) {
                 alert("Table Created Successfully");
@@ -28,8 +28,8 @@ function insertInto() {
     var long = document.getElementById("long").value;
     if (lName && lat && long != "") {
         db.transaction(function (transaction) {
-            var executeQuery = "INSERT INTO locations (loc, lon, lat) VALUES (" + lName + ", " + lat + ", " + long + ")";
-            transaction.executeSql(executeQuery, [],
+            var executeQuery = "INSERT INTO locations (loc, lon, lat) VALUES (?, ?, ?)";
+            transaction.executeSql(executeQuery, [lName, lat, long],
                 function (tx, result) {
                     alert("SUCCESSSSSSSS");
                 },
@@ -43,7 +43,7 @@ function insertInto() {
 }
 
 function locList() {
-    db.executeSql('SELECT * FROM location', [], function (rs) {
+    db.executeSql('SELECT * FROM locations', [], function (rs) {
         listItems(rs);//+ rs.rows.item(0).mycount);
     }, function (error) {
         console.log('SELECT SQL statement ERROR: ' + error.message);
@@ -52,8 +52,10 @@ function locList() {
 
 function listItems(rs) {
     var text = "";
-    for (i = 0; i < rs.count; i++) {
-        text += '<li>"loc:""' + rows.item(i).loc + '", "lat:""' + rows.item(i).lat + '", "lon:""' + rows.item(i).lon + "</li> ";
+    for (i = 0; i < rs.rows.length; i++) {
+        text += '<li>"loc:""' + rs.rows.item(i).loc + '", "lat:""' + rs.rows.item(i).lat + '", "lon:""' + rs.rows.item(i).lon + "</li> ";
     }
-    document.getElementById("dataList").innerHTML = listItems; 
+    console.log(text);
+    
+    document.getElementById("dataList").innerHTML = text; 
 }
