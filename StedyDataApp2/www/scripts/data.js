@@ -3,7 +3,8 @@ var db;﻿
 function createDB() {
     db = window.sqlitePlugin.openDatabase({
         name: 'stedy.db',
-        location: 'default'
+        location: 'default',
+        androidDatabaseImplementation: 2
     });
     console.log("db created");
 }
@@ -43,6 +44,7 @@ function insertInto() {
 }
 
 function locList() {
+    createDB();
     db.executeSql('SELECT * FROM locations', [], function (rs) {
         listItems(rs);//+ rs.rows.item(0).mycount);
     }, function (error) {
