@@ -14,6 +14,8 @@ btn.onclick = function () {
 span.onclick = function () {
     modal.style.display = "none";
     btn.style.display = "block";
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("list").style.display = "none";
     console.log("it passed");
 }
 window.onclick = function (event) {

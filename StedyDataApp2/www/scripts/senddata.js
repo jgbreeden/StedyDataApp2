@@ -3,8 +3,9 @@
     //then, initialize a text string, loop for each record in the records set
     //write data in a json array format
 
-    db.executeSql('SELECT * FROM location', [], function (rs) {
-        parseRecords(rs);//+ rs.rows.item(0).mycount);
+    db.executeSql('SELECT * FROM locations', [], function (rs) {
+        //parseRecords(rs);//+ rs.rows.item(0).mycount);
+        testData();
     }, function (error) {
         console.log('SELECT SQL statement ERROR: ' + error.message);
     });
@@ -53,11 +54,10 @@
 
 function testData() {
     var string = '[{"loc":"mess hall","lat":"32.4555","lon":"-114.81659"},' +
-        '{"loc":"storehouse","lat":"32.5444","lon":"-114.4555"}]'
-    $.post("http://localhost/stedydata/savedata.php", string,
-
+        '{"loc":"storehouse","lat":"32.5444","lon":"-114.4555"}]';
+    $.post("http://192.168.2.30/stedydata/saveData.php", string,
         function (data, status) {
             alert("Data: " + data + "\nStatus: " + status);
         });
-    alert("STOOPID")
+    console.log("returned");
 }

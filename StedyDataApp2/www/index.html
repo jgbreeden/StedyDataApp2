@@ -5,7 +5,7 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:  gap: https://ssl.gstatic.com http://localhost 'unsafe-inline' 'unsafe-eval'; style-src 'self'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:  gap: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval'; style-src 'self'; media-src *; connect-src http://192.168.2.30">
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
@@ -34,8 +34,11 @@
                 <div id="popup">
                     <button class="button" onclick="createDB()">OpenDatabase</button>
                     <button class="button" onclick="createTable()">CreateTable</button>
-                    <button class="button" onclick="sendData()">SendData</button>
-                    <button class="button" onclick="window.location = 'page.html';">ShowData</button>
+                    <button class="button" onclick="testData()">SendData</button>
+                    <button class="button" onclick="locList()">ShowData</button>
+                </div>
+                <div id="list">
+                    <ul id="dataList"></ul>
                 </div>
             </div>
         </div>
@@ -46,6 +49,7 @@
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
+    <script type="text/javascript" src="scripts/senddata.js"></script>
     <script type="text/javascript" src="scripts/Location.js"></script>
     <script type="text/javascript" src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="scripts/jquery-1.8.0.min.js"></script>
